@@ -40,13 +40,13 @@
         target: "#sideNav",
     });
 
-    /*const images = ['nice_pic.jpg', 'ok_smile.jpg', 'ninja.jpg'];
+    const images = ['1E269010-7009-430A-949C-49AB2253BA9B.jpeg', '1E269010-7009-430A-949C-49AB2253BA9B.jpeg', '1E269010-7009-430A-949C-49AB2253BA9B.jpeg'];
     let ind = 0;
     $(document).on("click", function () {
         const profile = $("#profile-image-circle")
         profile[0].src = 'assets/img/' + images[++ind % images.length];
     });
-   */
+   
     bubbleCursor()
 
     $("#sidebar-toggle").on("click", function () {

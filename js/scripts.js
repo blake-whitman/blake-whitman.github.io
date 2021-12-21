@@ -44,7 +44,7 @@
     let ind = 0;
     $(document).on("click", function () {
         const profile = $("#profile-image-circle")
-        profile[0].src = 'assets/img/' + images[++ind % images.length];
+        profile[0].src = 'assets/' + images[++ind % images.length];
     });
    
     bubbleCursor()

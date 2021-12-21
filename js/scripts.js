@@ -40,14 +40,14 @@
         target: "#sideNav",
     });
 
-    const images = ['1E269010-7009-430A-949C-49AB2253BA9B.jpeg'];
-    let ind = 0;
-    $(document).on("click", function () {
-        const profile = $("#profile-image-circle")
-        profile[0].src = 'assets/' + images[++ind % images.length];
-    });
+    //const images = ['1E269010-7009-430A-949C-49AB2253BA9B.jpeg'];
+    //let ind = 0;
+    //$(document).on("click", function () {
+    //    const profile = $("#profile-image-circle")
+    //    profile[0].src = 'assets/' + images[++ind % images.length];
+    //});
    
-    bubbleCursor()
+   bubbleCursor()
 
     $("#sidebar-toggle").on("click", function () {
         const side = $("#sideNav");

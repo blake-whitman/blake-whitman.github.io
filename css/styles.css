@@ -55,7 +55,7 @@
     text-decoration: none;
     font-size: 12px;
     border-radius: 100%;
-    background-color: #b3b4ff;
+    background-color: #fff;
     display: none; /* only needed if width is at least 992 */
 }
 

@@ -189,17 +189,17 @@ a {
 }
 
 a:hover {
-    color: #57365e;
+    color: #424242;
     text-decoration: underline;
 }
 
 a:not([href]) {
-    color: inherit;
+    color: #424242;
     text-decoration: none;
 }
 
 a:not([href]):hover {
-    color: inherit;
+    color: #424242;
     text-decoration: none;
 }
 

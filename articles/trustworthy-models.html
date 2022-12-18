@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108813396-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-108813396-1');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Building Trustworthy Models - Samuel Taylor</title>
+  </head>
+  <body>
+<span class="breadcrumb"><a href="../index.html">Home</a> &gt; <a href="index.html">Articles</a> &gt; Building Trustworthy Models</span>
+<h1>Building Trustworthy Models</h1>
+<p>Machine learning has a trust problem. Discussions about the role that algorithms
+play in our lives have become national (if not global), with some raising
+important and legitimate questions about the biases inherent in these
+algorithms. In this environment, we wonder: what would it take for a model to be
+worthy of our trust?</p>
+<p>I recently read an illuminating piece by David Spiegelhalter called "Should We
+Trust Algorithms?". In it, he identifies the difference between trustworthy
+claims about a system and trustworthy claims made by a system. His article
+spends more time on the former than the latter, so I've written this article to
+elaborate on ways our models can make more trustworthy claims.</p>
+<h2>Motivation</h2>
+<p>Building trust with users is essential for a few reasons. First, we want our
+products to be used. If a user doesn't trust the predictions made by my model,
+she is less likely to follow its advice. Worse, without adequately communicating
+uncertainty, we may actively anger her. Suppose a model predicts this user's
+house will sell for $300,000, but it ends up selling for $290,000. It's
+difficult to fault her for being upset at this $10,000 difference.</p>
+<p>By contrast, if we predicted a range of possible sale values, the user would
+have better expectations going in and a better experience with our product.</p>
+<p>Ethics provide a second reason that building trust is paramount. It is unethical
+to present estimates without a sense for their uncertainty. A common machine
+learning approach is to build some classification or regression model for a
+problem. These models typically output a single predicted value: "this flower is
+a setosa", "this house is worth $300K", or "this image has an airplane in it".
+These statements imply a level of certainty that may be unwarranted by the data,
+and we must be very careful to place them into context to avoid dishonesty.</p>
+<p>Finally, trustworthy models are just good business. If we hide uncertainty with
+overly-precise point estimates, we are likely to make bad decisions. Annie Duke
+writes:</p>
+<blockquote>
+<p>A great decision is the result of a good process, and that process must
+include an attempt to accurately represent our own state of knowledge. That
+state of knowledge, in turn, is some variation of “I’m not sure.”</p>
+</blockquote>
+<h2>Trustworthy models in practice</h2>
+<p>But building trust is hard. We cannot simply tell our users to "trust the
+algorithm" and expect them to do so. Instead, Spiegelhalter argues, we should
+put our efforts into building models that are worthy of trust. When we relate to
+other humans, we understand that we must demonstrate that we are worthy of trust
+before we will be trusted. The same holds true for models.</p>
+<p>A coworker of mine once asserted that trustworthy models provide at least three
+things:</p>
+<ol>
+<li>Prediction -- An estimate for some unknown value</li>
+<li>Confidence -- A description of how uncertain the model is about the
+   prediction</li>
+<li>Explanation -- The reasoning for which a model made its prediction</li>
+</ol>
+<p>As an example, consider a doctor. If your doctor told you that your arm needed
+to be amputated, you'd never let them do it just based on that recommendation!
+You would ask for some justification first. She would explain that an infection
+in your arm could be lethal if it spreads. In this way, she builds trust with
+you.</p>
+<p>These techniques which come as second nature to humans are not as automatic for
+machines. We often stop short of developing models that are truly worthy of our
+users' trust.</p>
+<p>Here's an example of what the output of a trustworthy model could look like:</p>
+<ol>
+<li>Prediction: My best guess at the sale price of this home is $324,000</li>
+<li>Confidence: A 95% confidence interval on that number is ($315K, $333K)</li>
+<li>Explanation: The home is large, but the fact that it's on a corner brings its
+   value down.</li>
+</ol>
+<p>This is a massive improvement over a single number! Not only is this a more
+honest statement to make, it helps users understand why the model gave its
+prediction. In turn, this helps users gain trust in the system and leads to
+better outcomes.</p>
+<p>We have a responsibility as model builders to represent our work with integrity.
+Shipping a model that is implicitly overconfident is bad for our users and our
+businesses. Instead, we should develop models that are truly worthy of trust.</p>
+<hr />
+<h2>Sources</h2>
+<ul>
+<li>Duke, A. (2019). <em>Thinking in Bets</em>. New York, NY: Portfolio/Penguin.</li>
+<li>Spiegelhalter, D. (2020). Should We Trust Algorithms? . <em>Harvard Data Science
+  Review</em>, 2(1). https://doi.org/10.1162/99608f92.cb91a35a</li>
+</ul>
+  </body>
+</html>

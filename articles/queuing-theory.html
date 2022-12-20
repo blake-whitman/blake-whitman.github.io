@@ -67,22 +67,26 @@ As mentioned previously, a lower expected ROA points toward a highly traversed b
     Therefore, the program will continue to run until the time value, which is incremented by 1 minute each iteration, reaches the predetermined concluding length of the simulation. The remaining sections of code below are each enclosed in this outermost loop.
     </li>
     <li><strong>Checks for P(a) and updates values</strong> First, let us take a look at the loop code for P(a):
-    
-    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_stop_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_arrival</span><span class="p">,</span> <span class="n">num_stops</span><span class="p">):</span>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pa_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_arrival</span><span class="p">,</span> <span class="n">num_stops</span><span class="p">):</span>
     <span class="n">for</span> <span class="o">count</span> <span class="n">in</span> <span class="o">range(num_stops)</span><span class="n">:</span>
     <span class="p">if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">time_per_arrival[count]</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
     <span class="p">     ...</span>
     <span class="c1">#  Randomize time_per_arrival[count] and queue passenger in line count</span>
-    </pre></div>  
-
+    </pre></div>
     Essentially, the program iterates through each bus stop and checks to see whether a passenger arrives at a stop at that specific time or not. A passenger can arrive at any combination of bus stops, including each one, depending on the current time t and the computed arrival rates for each bus stop. We test whether the current time in the experiment is divisible by the arrival rate for the bus stop in consideration. If it is, then we add one passenger to the line, Queue up that passenger's time of arrival, and then calculate a new arrival rate to be used for that bus stop. The recalculated arrival rate will be utilized during future iterations, to ensure random arrival intervals. This process is repeated for the duration of the trials.
     </li>
     <li><strong>Checks for P(b) and updates values</strong> Next, we survey the code for P(b):
-    <blockquote>
-      <p>for (int count = 0; count < numBuses; count++)</p>
-      <p>if (time % (iterator[count] * timePerBus) + (count * distanceBetween) == 0)</p>
-      <p>...</p>
-    </blockquote>
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pb_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_bus</span><span class="p">,</span> <span class="n">distance_between</span><span class="p">,</span> <span class="n">iterator</span><span class="p">,</span> <span class="n">num_buses</span><span class="p">):</span>
+    <span class="n">for</span> <span class="o">count</span> <span class="n">in</span> <span class="o">range(num_buses)</span><span class="n">:</span>
+    <span class="p">if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">iterator[count]</span> <span class="o">* time_per_bus</span> <span class="o">+</span> <span class="o">count</span> <span class="o">* distance_between</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
+    <span class="p">     ...</span>
+    <span class="c1">#  compute the number of passengers that depart the bus at stop "count" and update the corresponding number of passengers left on the bus</span>
+    </pre></div>
+      
+      
+      
+      
+      
     The idea behind this code is to cycle through the system of buses, while checking to see one by one whether a bus reaches a bus stop. If the second line of code equates to 0, as specified, then we will know that bus number COUNT will have arrived at a bus stop. Arrays contain indexing that commences from 0, which means bus 1 equates to a count value of 0, bus 2 = count 1, ... , bus i = count i − 1. The bus stop number is then determined with another segment of code. We can make the assumption that the bus stop is equivalent to the value of iterator[count] up until the moment iterator[count] exceeds the number of bus stops. Once iterator[count] > numStops, it will no longer make logical sense for that value to be used. As an example, a bus stopping at bus stop 6, given that there are only 5 bus stops, is not a possible outcome. Therefore, we update the value to account for this result.
 Using the new value, we can now assert that bus COUNT has reached bus stop STOP. We then compute the number of passengers that depart the bus at STOP and update the corresponding number of passengers left over on the bus, before arriving at one more tree of outcomes. There are two scenarios that take place when a bus reaches a stop:
     <ul>

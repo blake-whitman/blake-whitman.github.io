@@ -41,7 +41,7 @@
             <span class="s2">&quot;bus_capacity&quot;</span><span class="p">:</span> <span class="mf">40</span><span class="p">,</span>
         <span class="p">}</span>
     <span class="p">]</span>
-<span class="p">)</span>
+<span class="p">)</span></div>
 The simplifying assumption was made that each bus stop is an equidistant length from both the preceding and subsequent bus stop. To account for this, the metric bus stop interval can be defined as the time it takes for a bus to go from stop i -> stop i+1. For these trials, that length of time is 20 minutes. Thus, bus 1 will first reach bus stop 1 in 20 minutes, and it will again reach bus stop 1 at a time of 120 minutes in our simulation. Or, for an all encompassing solution, consider the following theorem:
 <blockquote>
 <p><strong>Theorem 2.1</strong> Bus i will reach stop j in n minutes, and bus i returns to stop j again in [(numStops * bus stop interval) + n] minutes.</p>

@@ -59,11 +59,14 @@ As mentioned previously, a lower expected ROA points toward a highly traversed b
 <li><strong>Main Program Structure</strong> In order to understand the entirety of the program, it is simpler to think in terms of its individual components. In this section, we will layout the structure of the simulation and explain the methodology behind each section. Below, P(a) will represent the arrival of a new customer at a bus stop, while B(a) illustrates a bus reaching a bus stop. The gist of the program is to check for the occurrences of these two events, while updating overarching results accordingly. Here is the simplified explanation of the iterative process used to simulate the bus system, broken down into several parts:
   <ul>
     <li><strong>Outermost Loop</strong> This portion makes the most intuitive sense. The loop reads:
-      <div class="highlight"><pre>
-      <span class="n">while</span><span class="p"> (</span><span class="n">time ≤ simLength</span><span class="p">)</span> <span class="n"> {</span>
-      <span class="n">.</span><span class="p">.</span><span class="n">.</span><span class="p"></span> <span class="n"></span><span class="p"></span>
-      <span class="n">t</span><span class="p">i</span><span class="n">m</span><span class="p">e</span> <span class="n">++</span><span class="p">;</span>
-      </pre></div>
+      
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_interaction_sim</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sim_length</span><span class="p">):</span>
+    <span class="n">while</span> <span class="o">time</span> <span class="n"><=</span><span class="o">sim_length</span><span class="n">:</span>
+    <span class="p">...</span>
+    <span class="p">time</span><span class="n">+</span><span class="p">+</span> <span class="n">;</span>
+</pre></div>
+      
+      
     Therefore, the program will continue to run until the time value, which is incremented by 1 minute each iteration, reaches the predetermined concluding length of the simulation. The remaining sections of code below are each enclosed in this outermost loop.
     </li>
     <li><strong>Checks for P(a) and updates values</strong> First, let us take a look at the loop code for P(a):

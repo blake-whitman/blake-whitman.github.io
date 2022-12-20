@@ -61,16 +61,16 @@ As mentioned previously, a lower expected ROA points toward a highly traversed b
     <li><strong>Outermost Loop</strong> This portion makes the most intuitive sense. The loop reads:
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_interaction_sim</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sim_length</span><span class="p">):</span>
     <span class="n">while</span> <span class="o">time</span> <span class="n"><=</span> <span class="o">sim_length</span><span class="n">:</span>
-    <span class="p">     ...</span>
-    <span class="p">     time</span><span class="n">+</span><span class="p">=</span> <span class="n">1</span>
+    <span class="p">    ...</span>
+    <span class="p">    time</span><span class="n">+</span><span class="p">=</span> <span class="n">1</span>
 </pre></div>
     Therefore, the program will continue to run until the time value, which is incremented by 1 minute each iteration, reaches the predetermined concluding length of the simulation. The remaining sections of code below are each enclosed in this outermost loop.
     </li>
     <li><strong>Checks for P(a) and updates values</strong> First, let us take a look at the loop code for P(a):
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pa_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_arrival</span><span class="p">,</span> <span class="n">num_stops</span><span class="p">):</span>
     <span class="n">for</span> <span class="o">count</span> <span class="n">in</span> <span class="o">range(num_stops)</span><span class="n">:</span>
-    <span class="p">     if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">time_per_arrival[count]</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
-    <span class="p">     ...</span>
+    <span class="p">    if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">time_per_arrival[count]</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
+    <span class="p">       ...</span>
     <span class="c1">#  Randomize time_per_arrival[count] and queue passenger in line count</span>
     </pre></div>
     Essentially, the program iterates through each bus stop and checks to see whether a passenger arrives at a stop at that specific time or not. A passenger can arrive at any combination of bus stops, including each one, depending on the current time t and the computed arrival rates for each bus stop. We test whether the current time in the experiment is divisible by the arrival rate for the bus stop in consideration. If it is, then we add one passenger to the line, Queue up that passenger's time of arrival, and then calculate a new arrival rate to be used for that bus stop. The recalculated arrival rate will be utilized during future iterations, to ensure random arrival intervals. This process is repeated for the duration of the trials.
@@ -78,8 +78,8 @@ As mentioned previously, a lower expected ROA points toward a highly traversed b
     <li><strong>Checks for P(b) and updates values</strong> Next, we survey the code for P(b):
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pb_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_bus</span><span class="p">,</span> <span class="n">distance_between</span><span class="p">,</span> <span class="n">iterator</span><span class="p">,</span> <span class="n">num_buses</span><span class="p">):</span>
     <span class="n">for</span> <span class="o">count</span> <span class="n">in</span> <span class="o">range(num_buses)</span><span class="n">:</span>
-    <span class="p">     if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">(iterator[count]</span> <span class="o">* time_per_bus)</span> <span class="o">+</span> <span class="o">count</span> <span class="o">* distance_between</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
-    <span class="p">     ...</span>
+    <span class="p">    if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">(iterator[count]</span> <span class="o">* time_per_bus)</span> <span class="o">+</span> <span class="o">count</span> <span class="o">* distance_between</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
+    <span class="p">       ...</span>
     <span class="c1">#  compute the number of passengers that depart the bus at stop "count" and update the corresponding number of passengers left on the bus</span>
     </pre></div>
     The idea behind this code is to cycle through the system of buses, while checking to see one by one whether a bus reaches a bus stop. If the second line of code equates to 0, as specified, then we will know that bus number COUNT will have arrived at a bus stop. Arrays contain indexing that commences from 0, which means bus 1 equates to a count value of 0, bus 2 = count 1, ... , bus i = count i − 1. The bus stop number is then determined with another segment of code. We can make the assumption that the bus stop is equivalent to the value of iterator[count] up until the moment iterator[count] exceeds the number of bus stops. Once iterator[count] > numStops, it will no longer make logical sense for that value to be used. As an example, a bus stopping at bus stop 6, given that there are only 5 bus stops, is not a possible outcome. Therefore, we update the value to account for this result.
@@ -93,12 +93,12 @@ Using the new value, we can now assert that bus COUNT has reached bus stop STOP.
     The code we used to approach these two situations is explored below.  
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_stop_interaction</span><span class="p">(</span><span class="n">waiting</span><span class="p">,</span> <span class="n">passengers</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
     <span class="n">if</span> <span class="o">waiting[stop]</span> <span class="n"><=</span> <span class="o">capacity - passengers[count]</span><span class="n">:</span>
-    <span class="p">     while</span> <span class="o">waiting[stop]</span> <span class="n">></span> <span class="o">0</span><span class="n">:</span>
-    <span class="p">     ...</span>
+    <span class="p">   while</span> <span class="o">waiting[stop]</span> <span class="n">></span> <span class="o">0</span><span class="n">:</span>
+    <span class="p">      ...</span>
     <span class="p">else:</span>
-    <span class="p">     ...</span>
-    <span class="p">     while</span> <span class="o">passengers[count]</span> <span class="n">!=</span> <span class="o">capacity</span><span class="n">:</span>
-    <span class="p">     ...</span>
+    <span class="p">   ...</span>
+    <span class="p">   while</span> <span class="o">passengers[count]</span> <span class="n">!=</span> <span class="o">capacity</span><span class="n">:</span>
+    <span class="p">      ...</span>
     </pre></div>
     The first IF statement determines whether the number of passengers waiting in line at <em>STOP</em> is less than or equal to the number of openings on the bus. If so, the program will enter the loop body and continue to update values until the amount left waiting is 0. If the number of waiting passengers is greater than the amount of openings, however, the program will iterate up until the bus is full. In each case, a variety of computations are performed to update the total number of passengers waiting at each stop, the total time waited at each stop, the wait times of each individual passenger, and the current number of passengers both waiting in line and on board a bus.
     </li>
@@ -146,72 +146,7 @@ As such, one would expect the corresponding simulated waiting times to be indepe
 <h2>Concluding Remarks</h2>
 <p>This study introduces a hypothetical system of buses and bus stops, based on real life parallels. We then produce waiting times for a mass quantity of passengers before testing their corresponding distributions in relation to potential theoretical outcomes. We find that the empirical distribution trends toward uniformity as opposed to a Poisson Process. In systems in which consumer arrivals occur relatively infrequently, thus reducing emphasis on spillover, the wait times fall in the range of [0, busDistanceInterval]. Conversely, the trial that incorporated more waiting passengers into a system of increasingly spread out buses found the distribution frequencies spanned nearly twice the original COTA experiment. Hence, the resultant accumulation of wait times is impacted by spillover, while the distribution remains constant. This suggests that as long as bus route intervals remain consistent, the distribution of passenger wait times will be relatively uniform in nature.</p>
 <p>Future research should take a look at a few variations of this project. This includes the distribution of buses along their respective routes, as well as the arrival rates of buses. Regarding bus allocation, this experiment commenced with one bus being dispersed at a time, until all buses were traversing routes. As a consequence, passengers arriving at the outermost routes see a spike in initial wait times. For example, assuming our parameters are in place, let Consumer A arrive at stop 4 at time t = 4 minutes. The first bus does not reach stop 4 until 80 minutes have elapsed, meaning Consumer A is forced to wait at least 76 minutes before boarding a bus. This may or may not be a desired scenario, depending on the bus system and city in consideration. Initially sending certain buses to later stops would more effectively distribute resources and service all bus stops equally during the first revolution. Alternatively, a bus system could simply direct potential passengers to wait until a certain operating time before waiting in line. The opening times of
-bus stops would then vary by the bus distance interval. Secondly, in order to more accurately replicate a Poisson Process, it may be prudent to provide randomness between bus arrival times. This would allow for more variation between waiting times and could potentially lead to a more centralized distribution. The randomized arrival times must be limited somewhat by the fact that bus systems are predicated on strict scheduling. However, exact arrival times do not occur, so a bus arriving several minutes early or late still provides meaningful data both theoretically and practically.</p>
-    
-
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">univariate_knearest_comparison</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">test_point</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">all_preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-    <span class="n">Q</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">all_preds</span><span class="p">,</span> <span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;Weight&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-    <span class="n">prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_point</span><span class="p">)</span>
-    <span class="n">neighbors</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
-        <span class="p">((</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span> <span class="k">for</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">Q</span><span class="p">),</span>
-        <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">prediction</span><span class="p">),</span>
-    <span class="p">)[:</span><span class="n">k</span><span class="p">]</span>
-    <span class="n">variance_estimate</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">prediction</span> <span class="o">-</span> <span class="n">y_true</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">y_true</span> <span class="ow">in</span> <span class="n">neighbors</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">prediction</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">variance_estimate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-<p>Hernández-Orallo describes this procedure as looking "for the closest
-estimations in the training set to the estimation for example <em>x</em>", then comparing
-"their true values with the estimation for <em>x</em>".</p>
-<p>This technique is cool because it can be applied to any regression model. By
-using the training set (or a validation set) in this clever way, we can enrich
-any model with the ability to estimate uncertainty (thus gaining the second
-aspect of what we've <a href="/articles/trustworthy-models.html">been calling trustworthy
-models</a>).</p>
-<p>If you've not read previous posts in this series, we've been working with a
-dataset about fish. From their dimensions, we're trying to predict their weight.
-It's totally a toy/unrealistic problem, but it's pedagogically useful.</p>
-<p>We'll start by training a linear model.</p>
-<div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;Length1&#39;</span><span class="p">,</span> <span class="s1">&#39;Length2&#39;</span><span class="p">,</span> <span class="s1">&#39;Length3&#39;</span><span class="p">,</span> <span class="s1">&#39;Height&#39;</span><span class="p">,</span> <span class="s1">&#39;Width&#39;</span><span class="p">]),</span>
-    <span class="p">(</span><span class="s1">&#39;ohe&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(),</span> <span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]),</span>
-<span class="p">])</span>
-
-<span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">())</span>
-<span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fish</span><span class="p">,</span> <span class="n">fish</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
-</pre></div>
-
-<span class="n">pred</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">univariate_knearest_comparison</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">fish</span><span class="p">,</span> <span class="n">new_fish</span><span class="p">)</span>
-<span class="c1"># (646.1153309725989, 4896.726887004621)</span>
-</pre></div>
-
-<p>With our prediction and variance estimate in hand, we can draw a normal
-distribution.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="kn">as</span> <span class="nn">st</span>
-
-<span class="k">def</span> <span class="nf">plot_normal</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">,</span> <span class="n">do_lims</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
-    <span class="n">width</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">*</span> <span class="mf">3.8</span>
-    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">pred</span> <span class="o">-</span> <span class="n">width</span><span class="p">,</span> <span class="n">pred</span> <span class="o">+</span> <span class="n">width</span>
-
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-
-    <span class="n">y</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="p">))</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">do_lims</span><span class="p">:</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
-
-        <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">yhi</span><span class="p">)</span>
-
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Conditional density of fish weight given features&#39;</span><span class="p">)</span>
-
-<span class="n">plot_normal</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
-</pre></div>
-    
+bus stops would then vary by the bus distance interval. Secondly, in order to more accurately replicate a Poisson Process, it may be prudent to provide randomness between bus arrival times. This would allow for more variation between waiting times and could potentially lead to a more centralized distribution. The randomized arrival times must be limited somewhat by the fact that bus systems are predicated on strict scheduling. However, exact arrival times do not occur, so a bus arriving several minutes early or late still provides meaningful data both theoretically and practically.</p>    
 <hr />
 <h3>Sources</h3>
 <ol start="0">

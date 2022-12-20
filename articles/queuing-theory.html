@@ -33,9 +33,9 @@
 <li><strong>Overview</strong> In order to understand the different values used in this experiment, it may help to first be given a general overview of the setup. To begin with, there are a predetermined allotment of buses and bus stops, and the buses are tasked with revolving around the bus stops. Starting with the simplest case, let us assume there is 1 bus and n bus stops. Then, the bus will first visit bus stop 1, then bus stop 2, and continue onward until it reaches the nth bus stop. In other words, bus i will travel in order from stop 1, 2, . . . j, j ∈ Z. After that point, it will begin again at bus stop 1 and proceed with this pattern until the simulation resolves. This idea remains consistent independent of the number of buses in use. The only modification is that the buses will be evenly distributed to maximize their route efficiency. Maintaining an equivalent distance between buses is addressed in the "Variables" section below.</li>
 <li><strong>Constants</strong> A myriad of constants were utilized amid the simulation process. These values were often approximated in order to simplify the testing process, and each can be altered as needed based on the particular bus system under surveillance. During testing, the following equivalencies were used:
 <blockquote>
-<p>number of buses (numBuses) = 4</p>
-<p>number of bus stops (numStops) = 5</p>
-<p>bus capacity (capacity) = 40</p>
+<span class="k">number of buses</span> <span class="nf"> (numBuses)</span><span class="p"> = 4</span>
+<span class="k">bus capacity</span> <span class="nf"> (capacity)</span><span class="p"> = 40</span>
+<span class="k">number of bus stops</span> <span class="nf"> (numStops)</span><span class="p"> = 5</span>
 </blockquote>
 The simplifying assumption was made that each bus stop is an equidistant length from both the preceding and subsequent bus stop. To account for this, the metric bus stop interval can be defined as the time it takes for a bus to go from stop i -> stop i+1. For these trials, that length of time is 20 minutes. Thus, bus 1 will first reach bus stop 1 in 20 minutes, and it will again reach bus stop 1 at a time of 120 minutes in our simulation. Or, for an all encompassing solution, consider the following theorem:
 <blockquote>

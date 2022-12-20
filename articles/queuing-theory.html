@@ -32,11 +32,16 @@
 <ol>
 <li><strong>Overview</strong> In order to understand the different values used in this experiment, it may help to first be given a general overview of the setup. To begin with, there are a predetermined allotment of buses and bus stops, and the buses are tasked with revolving around the bus stops. Starting with the simplest case, let us assume there is 1 bus and n bus stops. Then, the bus will first visit bus stop 1, then bus stop 2, and continue onward until it reaches the nth bus stop. In other words, bus i will travel in order from stop 1, 2, . . . j, j ∈ Z. After that point, it will begin again at bus stop 1 and proceed with this pattern until the simulation resolves. This idea remains consistent independent of the number of buses in use. The only modification is that the buses will be evenly distributed to maximize their route efficiency. Maintaining an equivalent distance between buses is addressed in the "Variables" section below.</li>
 <li><strong>Constants</strong> A myriad of constants were utilized amid the simulation process. These values were often approximated in order to simplify the testing process, and each can be altered as needed based on the particular bus system under surveillance. During testing, the following equivalencies were used:
-<div class="highlight"><pre>
-<span class="n">number_of_buses</span><span class="p"> (</span><span class="n">numBuses</span><span class="p">)</span> <span class="n"> =</span><span class="p"> 4</span>
-<span class="n">bus_capacity</span><span class="p"> (</span><span class="n">capacity</span><span class="p">)</span> <span class="n"> =</span><span class="p"> 40</span>
-<span class="n">number_of_bus_stops</span><span class="p"> (</span><span class="n">numStops</span><span class="p">)</span> <span class="n"> =</span><span class="p"> 5</span>
-</pre></div>
+
+<div class="highlight"><pre><span></span><span class="n">sim_const</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;num_buses&quot;</span><span class="p">:</span> <span class="mf">4</span><span class="p">,</span>
+            <span class="s2">&quot;num_bus_stops&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s2">&quot;bus_capacity&quot;</span><span class="p">:</span> <span class="mf">40</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 The simplifying assumption was made that each bus stop is an equidistant length from both the preceding and subsequent bus stop. To account for this, the metric bus stop interval can be defined as the time it takes for a bus to go from stop i -> stop i+1. For these trials, that length of time is 20 minutes. Thus, bus 1 will first reach bus stop 1 in 20 minutes, and it will again reach bus stop 1 at a time of 120 minutes in our simulation. Or, for an all encompassing solution, consider the following theorem:
 <blockquote>
 <p><strong>Theorem 2.1</strong> Bus i will reach stop j in n minutes, and bus i returns to stop j again in [(numStops * bus stop interval) + n] minutes.</p>
@@ -180,21 +185,6 @@ It's totally a toy/unrealistic problem, but it's pedagogically useful.</p>
 <span class="n">pipe</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">lm</span><span class="o">.</span><span class="n">LinearRegression</span><span class="p">())</span>
 <span class="n">pipe</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fish</span><span class="p">,</span> <span class="n">fish</span><span class="p">[</span><span class="s1">&#39;Weight&#39;</span><span class="p">])</span>
 </pre></div>
-
-<p>Then, we'll run the univariate k-nearest comparison function from above.</p>
-<div class="highlight"><pre><span></span><span class="n">new_fish</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="s2">&quot;Species&quot;</span><span class="p">:</span> <span class="s2">&quot;Bream&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;Weight&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-            <span class="s2">&quot;Length1&quot;</span><span class="p">:</span> <span class="mf">31.3</span><span class="p">,</span>
-            <span class="s2">&quot;Length2&quot;</span><span class="p">:</span> <span class="mi">34</span><span class="p">,</span>
-            <span class="s2">&quot;Length3&quot;</span><span class="p">:</span> <span class="mf">39.5</span><span class="p">,</span>
-            <span class="s2">&quot;Height&quot;</span><span class="p">:</span> <span class="mf">15.1285</span><span class="p">,</span>
-            <span class="s2">&quot;Width&quot;</span><span class="p">:</span> <span class="mf">5.5695</span><span class="p">,</span>
-        <span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">)</span>
 
 <span class="n">pred</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">univariate_knearest_comparison</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">fish</span><span class="p">,</span> <span class="n">new_fish</span><span class="p">)</span>
 <span class="c1"># (646.1153309725989, 4896.726887004621)</span>

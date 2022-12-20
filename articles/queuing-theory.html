@@ -59,27 +59,22 @@ As mentioned previously, a lower expected ROA points toward a highly traversed b
 <li><strong>Main Program Structure</strong> In order to understand the entirety of the program, it is simpler to think in terms of its individual components. In this section, we will layout the structure of the simulation and explain the methodology behind each section. Below, P(a) will represent the arrival of a new customer at a bus stop, while B(a) illustrates a bus reaching a bus stop. The gist of the program is to check for the occurrences of these two events, while updating overarching results accordingly. Here is the simplified explanation of the iterative process used to simulate the bus system, broken down into several parts:
   <ul>
     <li><strong>Outermost Loop</strong> This portion makes the most intuitive sense. The loop reads:
-      
     <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_interaction_sim</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sim_length</span><span class="p">):</span>
-    <span class="n">while</span> <span class="o">time</span> <span class="n"><=</span><span class="o">sim_length</span><span class="n">:</span>
-    <span class="p">...</span>
-    <span class="p">time</span><span class="n">+</span><span class="p">+</span> <span class="n">;</span>
+    <span class="n">while</span> <span class="o">time</span> <span class="n"><=</span> <span class="o">sim_length</span><span class="n">:</span>
+    <span class="p">     ...</span>
+    <span class="p">     time</span><span class="n">+</span><span class="p">+</span> <span class="n">;</span>
 </pre></div>
-      
-      
     Therefore, the program will continue to run until the time value, which is incremented by 1 minute each iteration, reaches the predetermined concluding length of the simulation. The remaining sections of code below are each enclosed in this outermost loop.
     </li>
     <li><strong>Checks for P(a) and updates values</strong> First, let us take a look at the loop code for P(a):
-    <blockquote>
-      
-      
-      
-      
-      <p>for (int count = 0; count < numStops; count++)</p>
-      <p>if (time % timePerArrival[d] == 0)</p>
-      <p>...</p>
-      <p>% Randomize timePerArrival[d] and queue passenger in line d %</p>
-    </blockquote>
+    
+    <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bus_stop_transition</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">time_per_arrival</span><span class="p">,</span> <span class="n">num_stops</span><span class="p">):</span>
+    <span class="n">for</span> <span class="o">count</span> <span class="n">in</span> <span class="o">range(num_stops)</span><span class="n">:</span>
+    <span class="p">if</span> <span class="o">time</span> <span class="n">%</span> <span class="o">time_per_arrival[count]</span> <span class="o">==</span> <span class="o">0</span><span class="n">:</span>
+    <span class="p">     ...</span>
+    <span class="c1">#  Randomize time_per_arrival[count] and queue passenger in line count</span>
+    </pre></div>  
+
     Essentially, the program iterates through each bus stop and checks to see whether a passenger arrives at a stop at that specific time or not. A passenger can arrive at any combination of bus stops, including each one, depending on the current time t and the computed arrival rates for each bus stop. We test whether the current time in the experiment is divisible by the arrival rate for the bus stop in consideration. If it is, then we add one passenger to the line, Queue up that passenger's time of arrival, and then calculate a new arrival rate to be used for that bus stop. The recalculated arrival rate will be utilized during future iterations, to ensure random arrival intervals. This process is repeated for the duration of the trials.
     </li>
     <li><strong>Checks for P(b) and updates values</strong> Next, we survey the code for P(b):

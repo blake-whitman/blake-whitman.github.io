@@ -3,42 +3,40 @@
   <head>
     <link rel="icon" type="image/x-icon" href="/logo.ico">
     <link rel="stylesheet" href="../static/css/style.css">
-    <title>ASL Tutor - Samuel Taylor</title>
+    <title>IntelliTrack - Blake Whitman</title>
   </head>
   <body>
-<span class="breadcrumb"><a href="../index.html">Home</a> &gt; <a href="https://blake-whitman.github.io/#projects">Projects</a> &gt; Doctor Performance Tracker</span>
-<h1>Doctor Performance Tracker</h1>
+<span class="breadcrumb"><a href="../index.html">Home</a> &gt; <a href="https://blake-whitman.github.io/#projects">Projects</a> &gt; IntelliTrack</span>
+<h1>IntelliTrack</h1>
 
-<p>Featured on the <a rel="nofollow" href="https://hack.osu.edu/2021/#winners">2021 HackOHI/O winners blog.</a></p>
+<p>Featured on the <a rel="nofollow" href="https://hack.osu.edu/2021/#winners">2021 HackOHI/O winners blog</a></p>
 
 <h2>Idea</h2>
 
-<p>The pharmaceutical industry uses prescriber data to target doctors with life-saving medications and therapies. Companies can use the prescriber data to help understand how doctors prescribe their product, as well as to help them to track total prescriptions (TRx) and new prescriptions (NRx) for a product in a given market.</p>
-<p>Our doctor performance tracker is a web app that can take prescriber data for doctors and leverage that to build out trending and targeting reports.</p>
+<p>The pharmaceutical industry uses prescriber data to target doctors with life-saving medications and therapies. Companies can use this prescriber data to help understand how doctors prescribe their product, as well as to help them track total prescriptions (TRx) and new prescriptions (NRx) for a product in a given market.</p>
+<p>IntelliTrack is a full-stack web app that takes prescriber data for doctors and leverages that to build out trending and targeting reports in an easily comprehensible dashboard.</p>
 <p>Junbo Chen, Nathan Rogers and I built this in November, 2021 at HackOHI/O. Source code is available <a rel="nofollow" href="https://github.com/blake-whitman/hack-ohio">on
 GitHub</a>.</p>
 
 <h2>Features Added</h2>
 
 <ol class="section-content">
-<li>Report the top doctors based on total prescriptions (TRx) by product -- We determined that more prescriptions equate to a more successful doctor and filtered through the data accordingly. The final result was the sorting of each drug in descending order with respect to TRx_Month_i, for i = 1, 2, 3, 4, 5, 6.
+  <li><strong>Report top doctors based on total prescriptions (TRx) by product</strong> -- We determined that more prescriptions equates to a more successful doctor and filtered through the data accordingly. The final result was the sorting of each drug in descending order with respect to TRx_Month_i, for each i in {1, 2, 3, 4, 5, 6}.
 </li>
-<li>Report trends of total prescriptions (TRx) based on product -- Created a line graph with four distinct lines correlating to each product. These lines vary over the course of the six months under evaluation, allowing the audience to draw conclusions
+  <li><strong>Report trends of total prescriptions (TRx) based on product</strong> -- Created a line graph with four distinct lines correlating to each product. These lines vary over the course of the time period under evaluation, allowing the audience to draw conclusions based on the ebb and flow of each trendline.
 </li>
-<li>Predict future top targets based on new prescriptions (NRx) -- The trickiest problem to solve–first, we find statistical descriptive counts such as the min, max, and average. Then, if a doctor's total NRx count meets or exceeds the average, he or she advances to the next round. If not, they are not a future top target using this process. After narrowing the field using the average, we next use the cumulative delta change between NRx counts for the remaining doctors. For instance, consider "Nathan Chen" [1,3,14,11,12,19]. To compute the delta change value, d, perform the following calculations: d = (3 - 1) + (14 - 3) + (11 - 14) + (12 - 11) + (19 - 12). We then took the top 6 delta change values and output them in a line graph. The consistent improvement of these doctors makes them optimal candidates for future targeting and we think they will prosper in that role.
+  <li><strong>Predict future top targets based on new prescriptions (NRx)</strong> -- The trickiest problem to solve–first, we find statistical descriptive counts such as the min, max, and average. Then, if a doctor's total NRx count meets or exceeds the average, he or she advances to the "next round" of candidacy. If not, they are excluded from consideration of being a future top target in accordance with this process. After narrowing the field using the average, we next use the cumulative delta change between NRx counts for the remaining doctors. For instance, consider an example doctor named "Nathan Chen" who has NRx counts of [1,3,14,11,12,19] over the past six months. In this case, to compute the delta change value, d, perform the following calculations: d = |(3 - 1)| + |(14 - 3)| + |(11 - 14)| + |(12 - 11)| + |(19 - 12)|. We then took the top 6 delta change values and output them in a line graph. The consistent improvement of these doctors makes them optimal candidates for future targeting and they will prosper in that role.
 </li>
-<li>Database functionality -- Used for storing training data for the machine learning
+  <li><strong>Database functionality</strong> -- Used for storing training data for the machine learning
 algorithms and for storing user information.</li>
 </ol>
 
-<h2>Future improvements</h2>
+<h2>Future Improvements</h2>
 
-<p>Currently, ASL Tutor is only able to recognize the alphabet, but we'd like to
-improve it to be able to recognize any sign.</p>
+<p>Currently, Intellitrack is only able to recognize limited data types from a span of around six months, but we'd prefer to
+improve it to be able to recognize any enumerable data types over n month timeframes.</p>
 
-<p>The "game" aspect of it was mostly devised as a fun way to demo our sign
-language recognition at a hackathon. Turns out that it's legitimately fun, but I
-think there are other applications of this technology as well. For example, it
-would be cool to build an on-the-fly translator for ASL.</p>
+<p>The "dashboard" aspect of it was mostly devised as a fun way to give the web application a social media type feel. 
+  It turns out that this feature was legitimately useful and set us apart from competing web apps. If we could build out the interactivity components of the social media dashboard, it would increase its utility and usability for doctors and medical centers alike.</p>
   </body>
 </html>

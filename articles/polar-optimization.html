@@ -178,9 +178,10 @@ These calculations give us two subsections of the shaded circular region R, whic
 <p>Earlier, a subset C was deemed convex if all points that lie between x, y ∈ C are also in C. An extension of this definition suggests that the region does not contain a <em>local minimum</em> or <em>local maximum</em>. Local extremum in this context can be viewed as “false” minimums or maximums. It does not represent the true highest or lowest point in the region, and in doing so corrupts the performance of our optimization strategy. Convex figures do not have local extremum, as they possess one distinct global minimum or global maximum. Our technique then leads to the convergence to that specific maximum or minimum, as desired.</p>
 <p>The second derivative test can be used in polar coordinates to determine the convexity. Note that in order to do so, it is required to calculate ∂2y/∂x2 with respect to polar coordinates r and θ. Consider the following derivation of the second derivative test for polar coordinates, using the fact that x = rcos θ and y = rsin θ:</p>
 <p><img src="/static/img/optimization/dr.png"></p>
-    
-    
-    
+<h2>Conclusion</h2>
+<p>Stochastic non-linear programming is an important class of polar optimization problems that includes second-order cone linear programming and stochastic mixed-integer linear programming as special cases. In this paper, we have described six different applications that lead to polar convex optimization solutions, and this has been achieved by relaxing assumptions that include deterministic information to incorporate different examples. It is important to indicate that all of the optimization examples that have been developed in this study are intractable for an extensive form formulation.</p>
+<p>Developing additional more specialized algorithms to solve the generic seven-stage polar optimization problem is an important subject of study. In this paper, we have commenced this study by describing solution methods for solving the generic linear optimization problem using the graphical method. We emphasize that the work presented in this paper is far from being a survey or comprehensive study, but instead that it would rather shape a basis for further research studies in polar optimization using the graphical method. In particular, it is our firm belief that this research is a rich source for stochastic models, and it can be utilized to implement numerous future algorithms for solving this class of optimization problems.</p>
+        
 <hr />
 <h2>References</h2>
 <ol start="1">

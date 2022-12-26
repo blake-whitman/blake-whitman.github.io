@@ -125,7 +125,39 @@ These calculations give us two subsections of the shaded circular region R, whic
 </ol>
     
 <p><strong>Example 4.2</strong> Let us now consider another example involving alternative polar convex regions. A p-convex circle will still be incorporated, but this time we add a constraint line along with an objective function line as well. Recall that lines are polar convex, thus fitting with our intended focus in this study. As before, all constraints are strictly non-negative values of r and θ. We wish to maximize the following objective function using the constraints listed:</p>
-
+<p><img src="/static/img/optimization/eqs6.png"></p>
+<p>The polar graph below displays the two constraint inequalities involving r and θ. To proceed in the optimization process, the next step is to identify the valid sides of the listed constraints. As seen in the previous example, the valid side of the circle is simply each point on or within the circle itself. It is shaded in below. To find the valid side of the line, though, we must plug in a sample point to the inequality. Consider (r, θ) = (0, 0):</p>
+<p><img src="/static/img/optimization/0less-1.png"></p>
+<p>Since the final inequality is logically false, we can conclude that the valid side of the line rests opposite the side containing (0, 0). As done in section 2, the next step is completed by identifying the feasible region of the graph. Since the feasible region is simply the intersection of each valid side, the feasible region can be reduced to the location on or inside the overlap between the circle and the valid line side. We graph it below in the rightmost graph:</p>
+<p><img src="/static/img/optimization/fig-19.png"></p>
+<p>Having established the feasible region, we know that the optimal solution lies somewhere within the shaded area above. We determine where that point is by analyzing the direction of improvement. As done in example 1, we begin by selecting two arbitrary values for z. Doing so allows us to check whether larger or smaller values of z result in a maximization. Let z = −1 and z = −1/2. We will then plot two objective function lines in order to verify which direction causeszto increase toward maximization. The two lines are plotted below on the graph.</p>
+<p>These figures inform us that as the value of z increases, the solution trends toward a maximization since the green line correlates to z = −1 and the orange line correlates to z = −1/2. Hence, we can conclude that the maximum value of z lies at the top right point within the feasible region. It is graphed below. To find the exact point of the solution, first set the two constraint equations equal to one another. Doing so will allow us to extract the locations of intersection between the blue line and the red circle. It is then possible to uncover the value of θ and use that value to determine r.</p>
+<p><img src="/static/img/optimization/ris2.png"></p>
+<p>That point has been bolded in the graph below. Notice that it dwells at the intersection of the two constraint equations.</p>
+<p><img src="/static/img/optimization/fig-21.png"></p>
+<p>Hence, the optimal solution is at (r, θ) = (2, 1.14676). To determine the maximum z value for the objective function, we input r = 2 and θ = 1.14676 into z = r cos θ. Therefore, z = 2cos(1.14676) = 0.823. We can conclude that the maximum value of z, given the two constraint inequalities, is 0.823.</p>
+<p><strong>Example 4.3</strong> Consider a third example involving a new figure called the torus. The torus is a surface that is formed by the revolution of a circle around a line in its plane. The figure possesses the properties of constant diameter without edges or vertices. For our purposes, we view the torus as a set of two-dimensional concentric circles. Tori are polar convex extending the definition giving earlier, which makes them a useful case study for our method. Here, we examine an example that incorporates the torus, a horizontal line, and an objective function parabola facing left.</p>
+<p><img src="/static/img/optimization/eqs7.png"></p>
+<p>The valid sides of the torus and line are shaded below in the left graph. On the right, the feasible region is shaded, which represents the area of intersection between the two shapes.</p>
+<p><img src="/static/img/optimization/fig-22.png"></p>
+<p>The optimal solution lies somewhere within the shaded area in the rightmost graph. Next, consider the direction of improvement. As done in the preceding examples, we select two arbitrary values for z. Let z = 1 and z = 1/2.</p>
+<p><img src="/static/img/optimization/ris1.png"></p>
+<p>This informs us that as z increases, the problem moves toward maximization. We now plot two objective function parabolas to verify this claim. The two shapes are plotted below on the graph.</p>
+<p>To locate the maximum value of z, we must find the rightmost point in the feasible region. To find it, set the constraint equations equal to one another to find θ. In this example, the optimal value of θ = 0.73. Then, insert that value into the line constraint equation to find r. r in this example is 3. The optimal point has been bolded in the graph below. Notice that it dwells at the intersection of the two constraint equations to the far right.</p>
+<p><img src="/static/img/optimization/fig-24.png"></p>
+<p>To find the exact maximum value of z, solve the objective function using the value of θ and r computed in the last step.</p>
+<p><img src="/static/img/optimization/lasteq.png"></p>
+<p>Hence, the maximum value of z in this problem is approximately 5.24.</p>
+<p><strong>Example 4.4</strong> We now introduce an example involving an ellipse, another polar convex region. In this ex- ample, the ellipse interacts with a circle and line to form the feasible region. The objective function in this case is the infinity shape. It is to be maximized to fit the parameters of the ellipse, circle, and line. See below for the specific constraint equations and objective function.</p>
+<p><img src="/static/img/optimization/eqs8.png"></p>
+<p>In the graph below to the left, the valid sides of each constraint are shown. In the next graph on the right hand side, the intersection of these regions is shown. This intersection represents the feasible region.</p>
+<p><img src="/static/img/optimization/fig-25.png"></p>
+<p>The optimal solution lies somewhere within the shaded area in the rightmost graph. As done before, we then select two arbitrary values for z. Let z = 2.25 and z = 1.</p>
+<p><img src="/static/img/optimization/ris1.5.png"></p>
+<p>The two constraint circles are graphed below, along with the maximization point at the meeting point of the polar line and the ellipse.</p>
+<p><img src="/static/img/optimization/fig-27.png"></p>
+<p>To find the actual maximization value of the objective function, insert the value of r into √z = r. We then get √z = 1.9, and z = 3.61.</p>
+<p><strong>Example 4.5</strong> We now consider an example involving a minimization. Minimization problems work in a similar manner as their maximization counterparts, except for the direction of improvement step. Once there, we look for the direction that improves the least instead of the direction that improves most. This will become increasingly clear when analyzing the below example. In this example, the two lines interact with a circle to form the feasible region. The objective function in this case is a limacon, which originates from Pascal. The limacon is defined as a roulette shape formed via a fixed path of a point around a circle such that the circle rotates around the outside of another circle of equivalent radius. In this example, we find a limacon that minimizes the parameters set by the two lines and circle. See below for the specific constraint equations and objective function.</p>
     
     
     

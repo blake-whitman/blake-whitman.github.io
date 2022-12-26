@@ -47,7 +47,7 @@
     //    profile[0].src = 'assets/' + images[++ind % images.length];
     //});
    
-   bubbleCursor()
+   //bubbleCursor()
 
     $("#sidebar-toggle").on("click", function () {
         const side = $("#sideNav");
@@ -73,7 +73,7 @@
 /**
  * Code below is Adapted from https://github.com/tholman/cursor-effects/blob/master/src/bubbleCursor.js
  * MIT license
- */
+ *
 function bubbleCursor(options) {
 
     let hasWrapperEl = options && options.element;
@@ -223,4 +223,4 @@ function bubbleCursor(options) {
     }
 
     init();
-}
+}*/

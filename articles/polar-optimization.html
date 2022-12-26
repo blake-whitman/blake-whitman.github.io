@@ -182,7 +182,7 @@ These calculations give us two subsections of the shaded circular region R, whic
     
     
 <hr />
-<h3>References</h3>
+<h2>References</h2>
 <ol start="0">
 <li id="fn0">J. Dattorro. Convex Optimization and Euclidean Distance Geometry. <em>Meboo Publishing</em>, Stanford University, 2005.</li>
 <li id="fn1">J. Reeb and S. Leavengood. Using the Graphical Method to Solve Linear Programs. <em>Performance Excellence in the Wood Products Industry: Operations Research</em>, Oregon State University, 1998.</li>
@@ -190,5 +190,28 @@ These calculations give us two subsections of the shaded circular region R, whic
 <li id="fn3">T. Tkocz. An introduction to convex and discrete geometry. Math 21-366 notes, <em>Carnegie Mellon University</em>, Fall 2019.</li>
 <li id="fn4">J. Zwarts and P. Gardenfors. Locative and directional prepositions in conceptual spaces: The role of polar convexity. <em>J. Logic Language Information</em>. 2016.</li>
 </ol>
+
+<hr />
+<h2>Appendix</h2>
+<p>In this section, we discuss the extension of polar coordinates from two dimensions into three dimensional spherical and cylindrical coordinate systems. First, consider the following applications of spherical coordi- nates. Below, we define and express the three-tuple (ρ, θ, φ) in terms of the point N.</p>
+<blockquote>radius, ρ: a non-negative real number representing the distance between the origin point and N</blockquote>
+<blockquote>azimuth angle, θ: the angle between N and the x-axis, such that 0º ≤ θ ≤ 2π</blockquote>
+<blockquote>polar angle, φ: the angle between N and the z-axis, such that 0º ≤ φ ≤ π</blockquote>
+<p>Let us now consider how this is done in closer detail by examining an example point N in terms of its spherical coordinates. The following three-tuple (ρ, θ, φ) point will be graphed below, with definitions of ρ, θ, and φ analogous to those above. We can then derive several conversion formulas to help conceptualize spherical coordinates.</p>
+<p><img src="/static/img/optimization/pthetaq.png"></p>
+<p>We now are able to examine some common conversion formulas that illustrate the way in which a point’s Cartesian and spherical coordinates are related. First, take a look at the converting formulas to go from spherical to Cartesian coordinates:</p>
+<p><img src="/static/img/optimization/xyzcos.png"></p>
+<p>Additionally, there are formulas for the opposite relationship, converting from Cartesian coordinates to spherical coordinates:</p>
+<p><img src="/static/img/optimization/psq.png"></p>
+<p>Let us now investigate cylindrical coordinates and their respective similarities and differences when compared to spherical coordinates. As before, we will end with a list of conversion formulas between the various coordinate systems. In the following representation, (r, θ) are polar coordinates of the point N’s projection in the xy-plane. z is the expected Cartesian component, which describes the location of the point as either above, on, or below the xy-plane.</p>
+<p><img src="/static/img/optimization/rthetaz.png"></p>
+<p>Now, here are a list of conversion formulas to alter cylindrical coordinates into their Cartesian coordinate counterparts:</p>
+<p><img src="/static/img/optimization/xyz.png"></p>
+<p>As done previously, we now express the reverse, converting from Cartesian coordinates to cylindrical coordinates. Notice the largely similar terms in each section. Additionally, keep in mind that cylindrical coordinates are simply an extension of polar coordinates with the inclusion of the z component.</p>
+<p><img src="/static/img/optimization/rtanz.png"></p>
+<p>Finally, we will look at the equations used to convert from cylindrical coordinates to spherical coordi- nates, and vice versa. First, we examine the conversion from cylindrical to spherical:</p>
+<p><img src="/static/img/optimization/ptheta.png"></p>
+<p>We conclude with the conversion formulas from spherical to cylindrical coordinates:</p>
+<p><img src="/static/img/optimization/rthetaeq.png"></p>
   </body>
 </html>
